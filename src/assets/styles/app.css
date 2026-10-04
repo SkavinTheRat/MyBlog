@@ -1,37 +1,39 @@
 /* ============================================================
    SkavinTheRat Blog — Design Tokens
-   背景色取自 Miles Davis 海报（浅暖米色，适合长文阅读）
+   背景色取自 THE EDGE 海报（米白色）
    强调色取自 THE EDGE 海报（高饱和橙色）
-   文本色为暖黑
+   正文色取自 Miles Davis 海报（暖黑）
+   点缀色取自 Miles Davis 海报（灰蓝）
    ============================================================ */
 :root {
   /* Primary — 海报橙 */
   --primary: 20 90% 48%;
-  /* Foreground — 暖黑 */
-  --foreground: 30 10% 9%;
-  --muted-foreground: 35 8% 32%;
-  /* Background — 米色（Miles Davis 海报底色） */
-  --background: 47 24% 92%;
-  --muted: 45 18% 86%;
-  --card: 45 22% 88%;
+  /* Foreground — Miles Davis 海报黑 */
+  --foreground: 36 8% 10%;
+  --muted-foreground: 36 7% 30%;
+  /* Background — 米白色（THE EDGE 海报底色） */
+  --background: 43 28% 88%;
+  --muted: 43 22% 83%;
+  --card: 43 24% 84%;
 
   /* Basic */
-  --border: 40 10% 74%;
-  --input: 40 10% 82%;
+  --border: 40 12% 70%;
+  --input: 40 12% 78%;
   --ring: 20 90% 48%;
   --radius: 0.5rem;
 
   /* Custom tokens */
-  --paper: 47 24% 92%;
-  --paper-deep: 45 20% 87%;
-  --ink: 30 10% 9%;
+  --paper: 43 28% 88%;
+  --paper-deep: 43 22% 83%;
+  --ink: 36 8% 10%;
   --accent: 20 90% 48%;
+  --accent-blue: 200 27% 42%;
 }
 .dark {
   /* Primary — 暗色下提亮橙色保持对比度 */
   --primary: 22 95% 62%;
   /* Foreground — 米白 */
-  --foreground: 47 20% 92%;
+  --foreground: 43 24% 90%;
   --muted-foreground: 40 8% 65%;
   /* Background — 暖炭黑 */
   --background: 30 9% 8%;
@@ -45,8 +47,9 @@
 
   --paper: 30 9% 8%;
   --paper-deep: 30 6% 12%;
-  --ink: 47 20% 92%;
+  --ink: 43 24% 90%;
   --accent: 22 95% 62%;
+  --accent-blue: 200 55% 68%;
 }
 :root {
   --un-default-border-color: hsl(var(--border) / 1);
@@ -89,12 +92,12 @@ a {
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: hsl(var(--muted-foreground) / 1);
+  color: hsl(var(--accent-blue) / 1);
 }
 .hero-meta .divider {
   width: 1px;
   height: 0.9rem;
-  background: hsl(var(--border) / 1);
+  background: hsl(var(--accent-blue) / 0.45);
 }
 
 /* 大字标题 */
@@ -132,7 +135,7 @@ a {
   }
 }
 
-/* Rise 插图：混合模式让米色底融入页面（底色过渡） */
+/* Rise 插图：保留原始色彩，边缘用渐变遮罩融入背景 */
 .hero-art {
   position: absolute;
   right: 0;
@@ -146,12 +149,9 @@ a {
 .hero-art img {
   width: 100%;
   height: auto;
-  mix-blend-mode: multiply; /* 米色底与页面底色融合 */
-  filter: contrast(1.02);
-}
-.dark .hero-art img {
-  mix-blend-mode: screen; /* 暗色模式反向融合 */
-  filter: invert(0.88) hue-rotate(180deg) contrast(0.95);
+  /* 四角与边缘径向渐隐，使海报柔和融入米白背景，不修改自身颜色 */
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, #000 55%, transparent 78%);
+  mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, #000 55%, transparent 78%);
 }
 @keyframes hero-art-in {
   from {
@@ -236,7 +236,7 @@ a {
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: hsl(var(--muted-foreground) / 1);
+  color: hsl(var(--accent-blue) / 1);
   opacity: 0;
   animation: fade-in-up 0.7s 0.85s ease forwards;
 }
@@ -250,7 +250,7 @@ a {
   content: '';
   width: 1px;
   height: 2.2rem;
-  background: hsl(var(--muted-foreground) / 0.6);
+  background: hsl(var(--accent-blue) / 0.7);
   animation: scroll-pulse 1.8s ease-in-out infinite;
   transform-origin: top;
 }
@@ -348,6 +348,9 @@ a {
   letter-spacing: 0.1em;
   color: hsl(var(--accent) / 1);
 }
+.note-item .tag {
+  color: hsl(var(--accent-blue) / 1);
+}
 .note-item p {
   margin-top: 0.35rem;
   color: hsl(var(--foreground) / 0.85);
@@ -386,6 +389,7 @@ a {
 .music-card .eq i:nth-child(2) {
   height: 100%;
   animation-delay: 0.15s;
+  background: hsl(var(--accent-blue) / 1); /* 橙蓝双色，致敬海报配色 */
 }
 .music-card .eq i:nth-child(3) {
   height: 65%;

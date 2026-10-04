@@ -46,7 +46,14 @@ const tools = ['VS Code', 'Obsidian', 'Git']
       </h1>
 
       <div class='hero-art'>
-        <Image src={riseImg} alt='Rise 主题插图：向上伸展的手与红色圆日' loading='eager' fetchpriority='high' />
+        <Image
+          src={riseImg}
+          alt='Rise 主题插图：向上伸展的手与红色圆日'
+          widths={[480, 736, 960, 1472]}
+          sizes='(max-width: 768px) 82vw, 46vw'
+          loading='eager'
+          fetchpriority='high'
+        />
       </div>
 
       <p class='hero-sub'>

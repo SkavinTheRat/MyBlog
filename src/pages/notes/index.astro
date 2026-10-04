@@ -42,7 +42,7 @@ const fmt = (d: Date) =>
           {note.data.tags.length > 0 && (
             <div class='mt-2 flex gap-x-3'>
               {note.data.tags.map((tag) => (
-                <span class='text-xs text-muted-foreground'>#{tag}</span>
+                <span class='tag text-xs'>#{tag}</span>
               ))}
             </div>
           )}

@@ -6,14 +6,14 @@
 <script is:inline>
   function simpleSetTheme() {
     let theme = localStorage.getItem('theme')
-    // If undefined or 'system', get from system
+    // 未手动选择时默认亮色（米白纸面为本站主视觉）；用户可通过页头按钮切换暗色
     if (!theme || theme === 'system') {
-      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      theme = 'light'
     }
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#0B0B10' : '#FCFCFD')
+      ?.setAttribute('content', theme === 'dark' ? '#17140F' : '#E9E3D4')
   }
   simpleSetTheme()
   document.addEventListener('astro:page-load', () => simpleSetTheme())
