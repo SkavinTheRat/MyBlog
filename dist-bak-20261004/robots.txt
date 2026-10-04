@@ -1,8 +1,0 @@
-User-agent: GPTBot
-User-agent: ClaudeBot
-User-agent: Claude-Web
-
-User-agent: *
-Allow: /
-
-Sitemap: https://skavintherat.vercel.app/sitemap-index.xml
