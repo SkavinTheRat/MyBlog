@@ -3,16 +3,67 @@ import PageLayout from '@/layouts/CommonPage.astro'
 
 // ============================================================
 // 音乐板块数据 —— 直接编辑下面的数组即可更新本页
-// tracks: 最近在听（no 序号自动生成；comment 可省略）
-// albums: 专辑（title/artist，封面暂用品牌色占位，接入封面图后可换）
+// tracks: 最近在听的单曲（comment 可省略）
+// albums: 专辑。cover 填 /images/covers/ 下的文件名；
+//         不传 cover 时显示橙蓝渐变占位封面
 // playlists: 歌单外链
 // ============================================================
 const tracks: { title: string; artist: string; comment?: string }[] = [
-  // { title: 'So What', artist: 'Miles Davis', comment: '写代码时听' },
+  // { title: 'Bohemian Rhapsody', artist: 'Queen', comment: '写代码时听' },
 ]
 
-const albums: { title: string; artist: string; year?: string }[] = [
-  // { title: 'Kind of Blue', artist: 'Miles Davis', year: '1959' },
+const albums: { title: string; artist: string; cover?: string; year?: string }[] = [
+  { title: 'A Night at the Opera', artist: 'Queen', cover: 'queen-a-night-at-the-opera' },
+  { title: 'News of the World', artist: 'Queen', cover: 'queen-news-of-the-world' },
+  { title: 'Sheer Heart Attack', artist: 'Queen', cover: 'queen-sheer-heart-attack' },
+  { title: 'A Day at the Races', artist: 'Queen', cover: 'queen-a-day-at-the-races' },
+  { title: 'The Game', artist: 'Queen', cover: 'queen-the-game' },
+  { title: 'The Works', artist: 'Queen', cover: 'queen-the-works' },
+  { title: 'Hot Space', artist: 'Queen', cover: 'queen-hot-space' },
+  { title: 'Made in Heaven', artist: 'Queen', cover: 'queen-made-in-heaven' },
+  { title: 'Bohemian Rhapsody (OST)', artist: 'Queen', cover: 'queen-bohemian-rhapsody' },
+  { title: 'The Platinum Collection', artist: 'Queen', cover: 'queen-platinum-collection' },
+  { title: 'Back in Black', artist: 'AC/DC', cover: 'acdc-back-in-black' },
+  { title: 'Highway to Hell', artist: 'AC/DC', cover: 'acdc-highway-to-hell' },
+  { title: 'High Voltage', artist: 'AC/DC', cover: 'acdc-high-voltage' },
+  { title: 'Dirty Deeds Done Dirt Cheap', artist: 'AC/DC', cover: 'acdc-dirty-deeds' },
+  { title: 'The Razors Edge', artist: 'AC/DC', cover: 'acdc-the-razors-edge' },
+  { title: 'Rock or Bust', artist: 'AC/DC', cover: 'acdc-rock-or-bust' },
+  { title: 'Iron Man 2', artist: 'AC/DC', cover: 'acdc-iron-man-2' },
+  { title: 'Appetite for Destruction', artist: "Guns N' Roses", cover: 'gnr-appetite' },
+  { title: 'Use Your Illusion II', artist: "Guns N' Roses", cover: 'use-your-illusion-ii' },
+  { title: 'OK Computer', artist: 'Radiohead', cover: 'ok-computer' },
+  { title: 'The Bends', artist: 'Radiohead', cover: 'radiohead-the-bends' },
+  { title: 'Creep - EP', artist: 'Radiohead', cover: 'radiohead-creep-ep' },
+  { title: 'Highway 61 Revisited', artist: 'Bob Dylan', cover: 'highway-61-revisited' },
+  { title: "The Freewheelin' Bob Dylan", artist: 'Bob Dylan', cover: 'dylan-freewheelin' },
+  { title: "The Times They Are A-Changin'", artist: 'Bob Dylan', cover: 'dylan-times-they-are-a-changin' },
+  { title: 'Pat Garrett & Billy the Kid', artist: 'Bob Dylan', cover: 'dylan-pat-garrett' },
+  { title: 'The Man Who Sold the World', artist: 'David Bowie', cover: 'man-who-sold-the-world' },
+  { title: 'The Rise and Fall of Ziggy Stardust', artist: 'David Bowie', cover: 'ziggy-stardust' },
+  { title: 'Weezer (Green Album)', artist: 'Weezer', cover: 'weezer-green' },
+  { title: 'Weezer (Blue Album)', artist: 'Weezer', cover: 'weezer-blue' },
+  { title: 'Machine Head', artist: 'Deep Purple', cover: 'machine-head' },
+  { title: "Who's Next", artist: 'The Who', cover: 'whos-next' },
+  { title: '21st Century Breakdown', artist: 'Green Day', cover: '21st-century-breakdown' },
+  { title: 'Stadium Arcadium', artist: 'Red Hot Chili Peppers', cover: 'rhcp-stadium-arcadium' },
+  { title: 'The Best of Don McLean', artist: 'Don McLean', cover: 'best-of-don-mclean' },
+  { title: 'Willy and the Poor Boys', artist: 'Creedence Clearwater Revival', cover: 'willy-and-the-poor-boys' },
+  { title: 'Mad Mad World', artist: 'Tom Cochrane', cover: 'mad-mad-world' },
+  { title: 'Winks & Kisses (20th Anniversary)', artist: 'Airiel', cover: 'winks-and-kisses' },
+  { title: 'Greatest Hits, Vol. I & II', artist: 'Billy Joel', cover: 'billy-joel-greatest-hits' },
+  { title: 'The Singles Plus', artist: 'The Animals', cover: 'the-animals-singles-plus' },
+  { title: 'Berry Is On Top', artist: 'Chuck Berry', cover: 'chuck-berry-is-on-top' },
+  { title: 'St. Louis to Liverpool', artist: 'Chuck Berry', cover: 'chuck-berry-st-louis-to-liverpool' },
+  { title: 'Aerosmith', artist: 'Aerosmith', cover: 'aerosmith-debut' },
+  { title: "(Pronounced 'Lĕh-'nérd 'Skin-'nérd)", artist: 'Lynyrd Skynyrd', cover: 'lynyrd-skynyrd-pronounced' },
+  { title: '恋文', artist: '中島みゆき', cover: 'nakajima-miyuki-koibumi' },
+  { title: 'Ants From Up There', artist: 'Black Country, New Road', cover: 'bcnr-ants-from-up-there' },
+  { title: 'Funeral', artist: 'Arcade Fire', cover: 'arcade-fire-funeral' },
+  { title: 'American Football (Deluxe)', artist: 'American Football', cover: 'american-football-lp1' },
+  { title: "Don't Forget About Me, Demos - EP", artist: 'Dominic Fike' },
+  { title: "This Is '80s Hair Metal", artist: '群星', cover: '80s-hair-metal' },
+  { title: "Baldur's Gate 3 (OST)", artist: 'Borislav Slavov', cover: 'baldurs-gate-3-ost' }
 ]
 
 const playlists: { title: string; link: string; platform?: string }[] = [
@@ -23,50 +74,53 @@ const playlists: { title: string; link: string; platform?: string }[] = [
 <PageLayout title='音乐'>
   <p class='text-muted-foreground'>写代码时的背景音，和听得最多的那些。</p>
 
-  <h2 class='mt-8 text-xl font-medium'>最近在听</h2>
   {
-    tracks.length === 0 ? (
-      <p class='mt-3 text-muted-foreground'>还没有内容。</p>
-    ) : (
-      <div class='mt-3'>
-        {tracks.map((t, i) => (
-          <div class='track-row'>
-            <span class='no'>{String(i + 1).padStart(2, '0')}</span>
-            <span class='name'>
-              {t.title}
-              <em>{t.artist}</em>
-            </span>
-            {t.comment && <span class='comment'>{t.comment}</span>}
-          </div>
-        ))}
-      </div>
+    tracks.length > 0 && (
+      <>
+        <h2 class='mt-8 text-xl font-medium'>最近在听</h2>
+        <div class='mt-3'>
+          {tracks.map((t, i) => (
+            <div class='track-row'>
+              <span class='no'>{String(i + 1).padStart(2, '0')}</span>
+              <span class='name'>
+                {t.title}
+                <em>{t.artist}</em>
+              </span>
+              {t.comment && <span class='comment'>{t.comment}</span>}
+            </div>
+          ))}
+        </div>
+      </>
     )
   }
 
-  <h2 class='mt-10 text-xl font-medium'>专辑</h2>
-  {
-    albums.length === 0 ? (
-      <p class='mt-3 text-muted-foreground'>还没有内容。把鼠标移到专辑上，唱片会滑出来。</p>
-    ) : (
-      <div class='album-grid mt-5'>
-        {albums.map((a) => (
-          <div class='album-card'>
-            <span class='disc'></span>
-            <span class='cover'>
+  <h2 class='mt-8 text-xl font-medium'>专辑</h2>
+  <div class='album-grid mt-5'>
+    {
+      albums.map((a) => (
+        <div class='album-card'>
+          <span class='disc'></span>
+          <span class:list={['cover', { placeholder: !a.cover }]}>
+            {a.cover ? (
+              <img
+                src={`/images/covers/${a.cover}.jpg`}
+                alt={`${a.title} — ${a.artist}`}
+                width='600'
+                height='600'
+                loading='lazy'
+              />
+            ) : (
               <span>{a.artist}</span>
-            </span>
-            <span class='meta'>
-              <strong>{a.title}</strong>
-              <span>
-                {a.artist}
-                {a.year && ` · ${a.year}`}
-              </span>
-            </span>
-          </div>
-        ))}
-      </div>
-    )
-  }
+            )}
+          </span>
+          <span class='meta'>
+            <strong>{a.title}</strong>
+            <span>{a.artist}</span>
+          </span>
+        </div>
+      ))
+    }
+  </div>
 
   <h2 class='mt-10 text-xl font-medium'>歌单</h2>
   {

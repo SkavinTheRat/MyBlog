@@ -8,10 +8,12 @@ import config from '@/site-config'
 // all pages through the use of the <BaseLayout /> component.
 import '@/assets/styles/global.css'
 import '@/assets/styles/app.css'
-// 海报展示字体（Anton 大标题）+ 等宽字体（meta 信息行）
+// 字体系统（全站仅两款）：
+// Anton — 英文大字标题 / 数字 / 装饰性 meta 信息
+// Noto Serif SC（思源宋体）— 全部中文内容与正文
 import '@fontsource/anton'
-import '@fontsource/space-mono/400.css'
-import '@fontsource/space-mono/700.css'
+import '@fontsource/noto-serif-sc/400.css'
+import '@fontsource/noto-serif-sc/600.css'
 
 interface Props {
   meta: SiteMeta

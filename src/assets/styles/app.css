@@ -66,6 +66,23 @@ a {
   }
 }
 
+/* 字体系统：全站仅两款——Anton（英文/数字/装饰）、思源宋体（中文/正文） */
+body {
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+}
+.statement {
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  font-weight: 600;
+}
+.prose :is(h1, h2, h3, h4) {
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  font-weight: 600;
+}
+h1 {
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+  font-weight: 600;
+}
+
 ::selection {
   background: hsl(var(--accent) / 0.9);
   color: hsl(var(--paper) / 1);
@@ -88,7 +105,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -238,7 +255,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -286,7 +303,7 @@ a {
   margin-bottom: 1.75rem;
 }
 .section-head h2 {
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -349,7 +366,7 @@ a {
   border-bottom: 1px dashed hsl(var(--border) / 1);
 }
 .note-item time {
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   color: hsl(var(--accent) / 1);
@@ -453,14 +470,21 @@ a {
   color: hsl(var(--paper) / 1);
   overflow: hidden;
 }
-.album-card .cover::after {
+.album-card .cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.album-card .cover.placeholder::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, hsl(var(--ink) / 0.35), transparent 55%);
 }
 .album-card .cover span {
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -507,7 +531,7 @@ a {
   padding-left: 0.9rem;
 }
 .track-row .no {
-  font-family: 'Space Mono', ui-monospace, monospace;
+  font-family: 'Anton', 'Noto Serif SC', serif;
   font-size: 0.75rem;
   color: hsl(var(--muted-foreground) / 1);
   transition: color 0.2s ease;

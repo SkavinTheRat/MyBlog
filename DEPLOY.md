@@ -52,6 +52,68 @@ git push -u origin main
 
 ---
 
+## 日常更新流程（网站上线后这样用）
+
+### 发一篇博客文章
+
+```bash
+# 1. 在 src/content/blog/ 下新建文件夹（文件夹名即 URL，用英文短横线），内建 index.md
+#    例：src/content/blog/python-notes-1/index.md
+```
+
+文章头部（frontmatter）格式，参考现有文章 `hello-world`：
+
+```yaml
+---
+title: '文章标题（60 字内）'
+description: '一句话摘要，会显示在列表页'
+publishDate: 2026-10-04
+tags: ['python', '笔记']
+---
+```
+
+正文直接写 Markdown。
+
+### 配图怎么传
+
+- **文章配图**：与 `index.md` 放同一个文件夹（如 `cover.jpg`），正文里用 `![说明](./cover.jpg)` 引用；封面图在 frontmatter 加 `heroImage: { src: './cover.jpg', alt: '说明' }`。构建时自动压缩优化。
+- **不改动的通用文件**（favicon、软件截图等长期资源）：放 `public/images/`，用 `/images/xxx.png` 绝对路径引用。
+- **头像**：直接替换 `src/assets/avatar.png`（保持文件名不变）。
+
+### 发一条随记
+
+在 `src/content/notes/` 下新建 `.md` 文件（文件名随意，不进 URL）：
+
+```yaml
+---
+publishDate: 2026-10-05
+tags: ['想法']
+---
+正文一两句话即可。
+```
+
+### 更新音乐板块
+
+编辑 `src/pages/music/index.astro` 顶部的三个数组（文件内有格式注释）：
+`tracks` 最近在听 / `albums` 专辑 / `playlists` 歌单外链。
+
+### 改站点信息
+
+站名、简介、导航菜单、社交链接都在 `src/site.config.ts`。
+
+### 本地预览与发布
+
+```bash
+npm run dev      # 本地实时预览（localhost:4321），写完先看一眼
+git add .
+git commit -m "post: 文章标题"   # 提交信息随意
+git push         # 推送后 Vercel 约 1 分钟自动构建上线
+```
+
+**建议频率**：每月 1–2 篇文章 + 随想随手记随记。持续比爆发重要。
+
+---
+
 ## 常见问题
 
 | 问题 | 原因与解决 |
