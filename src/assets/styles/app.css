@@ -135,32 +135,38 @@ a {
   }
 }
 
-/* Rise 插图：保留原始色彩，边缘用渐变遮罩融入背景 */
+/* Rise 插图：保留原始色彩，缩小并下移与标题拉开距离，四边渐变融入背景 */
 .hero-art {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 58%;
   z-index: 1;
-  width: min(46%, 30rem);
-  transform: translateY(-52%);
+  width: min(36%, 23rem);
+  transform: translateY(-50%);
   opacity: 0;
   animation: hero-art-in 1.1s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .hero-art img {
   width: 100%;
   height: auto;
-  /* 四角与边缘径向渐隐，使海报柔和融入米白背景，不修改自身颜色 */
-  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, #000 55%, transparent 78%);
-  mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, #000 55%, transparent 78%);
+  /* 四边分别渐隐（左右 + 上下），边缘更自然地融入米白背景，不修改自身颜色 */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 15%, #000 85%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 15%, #000 85%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 15%, #000 85%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 15%, #000 85%, transparent 100%);
+  mask-composite: intersect;
 }
 @keyframes hero-art-in {
   from {
     opacity: 0;
-    transform: translateY(-46%) scale(1.04);
+    transform: translateY(-44%) scale(1.04);
   }
   to {
     opacity: 1;
-    transform: translateY(-52%) scale(1);
+    transform: translateY(-50%) scale(1);
   }
 }
 
@@ -406,6 +412,124 @@ a {
 }
 
 /* ============================================================
+   音乐板块 — 专辑卡片与黑胶滑出动效（参考音乐 App 的经典交互）
+   ============================================================ */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 1.5rem;
+}
+.album-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+}
+.album-card .disc,
+.album-card .cover {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.375rem;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* 黑胶唱片：藏在封面正后方，悬停时滑出并旋转 */
+.album-card .disc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background:
+    radial-gradient(circle at center, hsl(var(--accent) / 0.9) 0 11%, #1c1a17 11.5% 14%, #26231f 14% 100%),
+    repeating-radial-gradient(circle at center, #1c1a17 0 1.5px, #26231f 1.5px 3px);
+  background-blend-mode: normal, normal;
+  box-shadow: 0 4px 18px hsl(var(--ink) / 0.18);
+  z-index: 1;
+}
+.album-card .cover {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.6rem;
+  background: linear-gradient(135deg, hsl(var(--accent) / 0.85), hsl(var(--accent-blue) / 0.85));
+  color: hsl(var(--paper) / 1);
+  overflow: hidden;
+}
+.album-card .cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, hsl(var(--ink) / 0.35), transparent 55%);
+}
+.album-card .cover span {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.album-card:hover .disc {
+  transform: translateX(38%) rotate(200deg);
+}
+.album-card:hover .cover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 hsl(var(--ink) / 0.85);
+}
+.album-card .meta {
+  margin-top: 0.6rem;
+}
+.album-card .meta strong {
+  display: block;
+  font-weight: 500;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+.album-card .meta span {
+  display: block;
+  font-size: 0.78rem;
+  color: hsl(var(--muted-foreground) / 1);
+  margin-top: 0.15rem;
+}
+
+/* 最近在听 — 音轨列表 */
+.track-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px dashed hsl(var(--border) / 1);
+  transition:
+    background 0.2s ease,
+    padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.track-row:hover {
+  background: hsl(var(--muted) / 0.5);
+  padding-left: 0.9rem;
+}
+.track-row .no {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground) / 1);
+  transition: color 0.2s ease;
+}
+.track-row:hover .no {
+  color: hsl(var(--accent) / 1);
+}
+.track-row .name {
+  font-size: 0.95rem;
+}
+.track-row .name em {
+  font-style: normal;
+  color: hsl(var(--muted-foreground) / 1);
+  margin-left: 0.5rem;
+  font-size: 0.82rem;
+}
+.track-row .comment {
+  font-size: 0.78rem;
+  color: hsl(var(--accent-blue) / 1);
+}
+
+/* ============================================================
    滚动浮现动画（IntersectionObserver 驱动）
    ============================================================ */
 .reveal {
@@ -433,6 +557,11 @@ a {
   .scroll-hint::after,
   .music-card .eq i {
     animation: none !important;
+  }
+  .album-card .disc,
+  .album-card .cover,
+  .track-row {
+    transition: none !important;
   }
   .reveal {
     opacity: 1;

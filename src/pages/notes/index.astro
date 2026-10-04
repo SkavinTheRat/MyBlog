@@ -20,13 +20,11 @@ const fmt = (d: Date) =>
 ---
 
 <PageLayout title='随记'>
-  <p class='text-muted-foreground'>
-    短小的想法、即时的记录、不值得成文的碎片。不写长文压力，保持输出习惯。
-  </p>
+  <p class='text-muted-foreground'>想法与碎片，随手记在这里。</p>
 
   {
     rendered.length === 0 && (
-      <p class='text-muted-foreground mt-6'>还没有随记。在 src/content/notes/ 下新建一个 .md 文件就是第一条。</p>
+      <p class='text-muted-foreground mt-6'>还没有随记。在 src/content/notes/ 下新建一个 .md 就是第一条。</p>
     )
   }
 

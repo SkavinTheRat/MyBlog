@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="/scripts/pretty-feed-v3.xsl" type="text/xsl"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:h="http://www.w3.org/TR/html4/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SkavinTheRat</title><description>HIT 智能科学在读 · 编程初学者，正在努力学习中</description><link>https://skavintherat.vercel.app</link><item><title>你好，世界：我的博客开张了</title><link>https://skavintherat.vercel.app/blog/hello-world</link><guid isPermaLink="true">https://skavintherat.vercel.app/blog/hello-world</guid><description>这个网站是怎么来的：技术选型、设计灵感，以及我对它未来四年的期待。</description><pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;为什么要有自己的博客&lt;/h2&gt;
+&lt;p&gt;作为智能科学专业的大一新生，我需要一个地方：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;沉淀学习笔记&lt;/strong&gt;——公开写作倒逼自己把知识讲清楚；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;记录折腾过程&lt;/strong&gt;——踩过的坑，写下来才是经验；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;展示成长轨迹&lt;/strong&gt;——四年后再回头看，这里就是证据链。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;这个网站是怎么搭的&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;框架&lt;/strong&gt;：&lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt; + &lt;a href=&quot;https://github.com/cworld1/astro-theme-pure&quot;&gt;Astro Theme Pure&lt;/a&gt;（静态站点生成，速度快、免服务器）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;部署&lt;/strong&gt;：Vercel（免费托管，&lt;code&gt;git push&lt;/code&gt; 自动上线）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;设计&lt;/strong&gt;：米色纸面 + 海报橙点缀，首页大字排版致敬瑞士海报风格&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容&lt;/strong&gt;：博客长文、随记碎片、音乐记录三个板块&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;接下来的计划&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;把 Python 学习过程整理成系列笔记&lt;/li&gt;
+&lt;li&gt;给网站逐步加上评论、统计等功能，每加一项就写一篇记录&lt;/li&gt;
+&lt;li&gt;保持每月至少一两篇的更新频率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;日拱一卒，功不唐捐。第一篇，就到这里。&lt;/p&gt;</content:encoded><h:img src="undefined"/><enclosure url="undefined"/></item></channel></rss>

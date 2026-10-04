@@ -1,42 +1,42 @@
 ---
-import { Button, Collapse, Spoiler, Timeline } from 'astro-pure/user'
+import links from '@/public/links.json'
+
+import { Button, Collapse, Timeline } from 'astro-pure/user'
 import PageLayout from '@/layouts/CommonPage.astro'
 import Substats from '@/components/about/Substats.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
+import FriendList from '@/components/links/FriendList.astro'
 
 const headings = [
   { depth: 2, slug: 'hobbies', text: 'Hobbies' },
   { depth: 2, slug: 'tools', text: 'Tools' },
   { depth: 2, slug: 'social-networks', text: 'Social Networks' },
+  { depth: 2, slug: 'friends', text: '友链' },
   { depth: 2, slug: 'gossips', text: 'Gossips' },
   { depth: 2, slug: 'about-blog', text: 'About Blog' }
 ]
+
+const { friends } = links
 ---
 
 <PageLayout title='About' {headings}>
-  <p>Student / Beginner Programmer</p>
+  <p>哈尔滨工业大学智能科学专业在读。</p>
   <p>
-    哈尔滨工业大学（本部）智能科学专业 2026 级本科生。编程初学者，正在学习 Python
-    与 Web 开发，对人工智能的一切都抱有好奇。这个网站记录我的学习轨迹——
-    折腾的每一步，都算数。
-  </p>
-  <p>
-    Motto: 日拱一卒，功不唐捐。<Spoiler>网名由来见下方 Gossips。</Spoiler>
+    Motto: 日拱一卒，功不唐捐。
   </p>
   <Button title='回到首页' class='w-fit' href='/' variant='ahead' />
 
   {/* general-talk */}
   <h2 id='hobbies'>Hobbies</h2>
   <ul>
-    <li><b>Coding</b>：正在从 Python 入门编程，编辑器用 VS Code。</li>
-    <li><b>Game</b>：星际公民（Star Citizen）等 PC 游戏玩家。</li>
-    <li><b>Music</b>：听歌记录与歌单正在整理，见<a href='/music'>音乐板块</a>。</li>
-    <li><b>Notes</b>：用 Obsidian 管理学习笔记，零碎想法写在本站的<a href='/notes'>随记</a>里。</li>
+    <li><b>Coding</b>：从 Python 开始。</li>
+    <li><b>Game</b>：星际公民。</li>
+    <li><b>Music</b>：见<a href='/music'>音乐板块</a>。</li>
+    <li><b>Notes</b>：零碎想法写在<a href='/notes'>随记</a>里。</li>
   </ul>
 
   {/* tools */}
   <h2 id='tools'>Tools</h2>
-  <p>我目前在用的装备与工具：</p>
   <ToolSection
     class='mb-5'
     title='Development'
@@ -94,7 +94,6 @@ const headings = [
 
   {/* social-networks */}
   <h2 id='social-networks'>Social Networks</h2>
-  <p>可以在这些地方找到我（数据由 Substats 实时聚合）：</p>
   <Substats
     stats={[
       {
@@ -112,27 +111,38 @@ const headings = [
     <li>学校邮箱：<a href='mailto:2026110073@stu.hit.edu.cn'>2026110073@stu.hit.edu.cn</a></li>
   </ul>
 
+  {/* friends */}
+  <h2 id='friends'>友链</h2>
+  {
+    friends[0].link_list.length > 0 ? (
+      <FriendList list={friends[0]} />
+    ) : (
+      <p class='text-muted-foreground'>
+        还没有友链。想交换的朋友可以到
+        <a href='/links'>友链页</a> 申请。
+      </p>
+    )
+  }
+
   {/* gossips */}
   <h2 id='gossips'>Gossips</h2>
-  {/* TODO: 写下你自己网名的故事，替换下面的占位内容 */}
+  {/* TODO: 写下网名的故事，替换占位内容 */}
   <Collapse title='为什么叫 SkavinTheRat？'>
-    这个名字背后有一个故事，等我找个时间把它写下来……（在
-    <code>src/pages/about/index.astro</code> 中编辑这一段）
+    说来话长，这里先挖个坑。（在 <code>src/pages/about/index.astro</code> 编辑这一段）
   </Collapse>
 
   {/* about-blog */}
   <h2 id='about-blog'>About Blog</h2>
-  <p>网站历史（从第一天开始记录）：</p>
   <Timeline
     events={[
       {
         date: '2026-10-04',
         content:
-          '网站破土动工：基于 <a href="https://astro.build/" target="_blank">Astro</a> 与 <a href="https://github.com/cworld1/astro-theme-pure" target="_blank">Astro Theme Pure</a> 完成本地化定制，确定了米色 + 海报橙的视觉系统'
+          '上线：基于 <a href="https://astro.build/" target="_blank">Astro</a> 与 <a href="https://github.com/cworld1/astro-theme-pure" target="_blank">Astro Theme Pure</a> 搭建，米色 + 海报橙。'
       }
     ]}
   />
-  <p>本站的顺利运行离不开以下优秀项目与服务的支持：</p>
+  <p>本站基于以下项目与服务：</p>
   <ul>
     <li>
       Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
@@ -143,9 +153,8 @@ const headings = [
     <li>
       Site hosting: <a href='https://vercel.com/' target='_blank'>Vercel</a>
     </li>
-    <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a>（待部署后开启）</li>
     <li>
-      Statistics: <a href='https://github.com/spencerwooo/substats' target='_blank'>Substats</a>
+      Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a>（待开启）
     </li>
     <li>Quotes: <a href='https://hitokoto.cn/' target='_blank'>一言</a></li>
   </ul>
