@@ -444,31 +444,16 @@ h1 {
 .album-card:hover {
   z-index: 3; /* 放大时不被邻近卡片裁切 */
 }
-.album-card .disc,
-.album-card .cover {
-  aspect-ratio: 1 / 1;
-  border-radius: 0.375rem;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-/* 黑胶唱片：藏在封面正后方，悬停时滑出并旋转 */
-.album-card .disc {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background:
-    radial-gradient(circle at center, hsl(var(--accent) / 0.9) 0 11%, #1c1a17 11.5% 14%, #26231f 14% 100%),
-    repeating-radial-gradient(circle at center, #1c1a17 0 1.5px, #26231f 1.5px 3px);
-  background-blend-mode: normal, normal;
-  box-shadow: 0 4px 18px hsl(var(--ink) / 0.18);
-  z-index: 1;
-}
+/* 专辑封面：悬停时抬起并放大 */
 .album-card .cover {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: flex-end;
   padding: 0.6rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.375rem;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   background: linear-gradient(135deg, hsl(var(--accent) / 0.85), hsl(var(--accent-blue) / 0.85));
   color: hsl(var(--paper) / 1);
   overflow: hidden;
@@ -493,9 +478,6 @@ h1 {
   text-transform: uppercase;
   position: relative;
   z-index: 1;
-}
-.album-card:hover .disc {
-  transform: translateX(38%) rotate(200deg);
 }
 .album-card:hover .cover {
   /* 抬起并放大，配柔和投影 */
@@ -586,7 +568,6 @@ h1 {
   .music-card .eq i {
     animation: none !important;
   }
-  .album-card .disc,
   .album-card .cover,
   .track-row {
     transition: none !important;

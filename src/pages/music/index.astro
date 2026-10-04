@@ -99,7 +99,6 @@ const playlists: { title: string; link: string; platform?: string }[] = [
     {
       albums.map((a) => (
         <div class='album-card'>
-          <span class='disc'></span>
           <span class:list={['cover', { placeholder: !a.cover }]}>
             {a.cover ? (
               <img
