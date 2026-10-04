@@ -41,4 +41,4 @@ bunfig.toml
 /test/
 
 # 本地构建备份目录（沙箱限制下的临时产物）
-dist-bak-*/
+dist-bak*/
