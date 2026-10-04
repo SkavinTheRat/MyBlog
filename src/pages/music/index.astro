@@ -1,0 +1,90 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+
+// ============================================================
+// 音乐板块数据 —— 直接编辑下面的数组即可更新本页
+// 每条记录：title 曲名 / artist 艺人 / comment 一句话感受（可选）
+// ============================================================
+const recentListens: { title: string; artist: string; comment?: string }[] = [
+  // 示例（取消注释并替换成你自己的）：
+  // { title: 'Bohemian Rhapsody', artist: 'Queen', comment: '六分钟里过完一生' },
+]
+
+const favoriteAlbums: { title: string; artist: string; year?: string }[] = [
+  // { title: 'Kind of Blue', artist: 'Miles Davis', year: '1959' },
+]
+
+const playlists: { title: string; link: string; platform?: string }[] = [
+  // { title: '我的年度歌单', link: 'https://music.163.com/', platform: '网易云音乐' },
+]
+---
+
+<PageLayout title='音乐'>
+  <p class='text-muted-foreground'>
+    音乐是写代码时最好的背景。这里记录我在听什么、喜欢什么。
+  </p>
+
+  <h2 class='mt-8 text-xl font-medium'>最近在听</h2>
+  {
+    recentListens.length === 0 ? (
+      <div class='music-card mt-4'>
+        <span class='eq'><i></i><i></i><i></i></span>
+        <span class='text-muted-foreground'>
+          歌单还在整理中。编辑 src/pages/music/index.astro 顶部的 recentListens 数组即可添加第一首。
+        </span>
+      </div>
+    ) : (
+      <ul class='mt-4 flex flex-col gap-y-3'>
+        {recentListens.map((song) => (
+          <li class='music-card'>
+            <span class='eq'><i></i><i></i><i></i></span>
+            <span>
+              <span class='block font-medium'>{song.title}</span>
+              <span class='block text-sm text-muted-foreground'>
+                {song.artist}{song.comment && ` · ${song.comment}`}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <h2 class='mt-10 text-xl font-medium'>年度最爱</h2>
+  {
+    favoriteAlbums.length === 0 ? (
+      <p class='mt-3 text-muted-foreground'>到年底回顾时，这里会有内容。</p>
+    ) : (
+      <ul class='mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2'>
+        {favoriteAlbums.map((album) => (
+          <li class='music-card'>
+            <span>
+              <span class='block font-medium'>{album.title}</span>
+              <span class='block text-sm text-muted-foreground'>
+                {album.artist}{album.year && ` · ${album.year}`}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <h2 class='mt-10 text-xl font-medium'>歌单</h2>
+  {
+    playlists.length === 0 ? (
+      <p class='mt-3 text-muted-foreground'>公开歌单整理好后会放在这里。</p>
+    ) : (
+      <ul class='mt-4 flex flex-col gap-y-3'>
+        {playlists.map((pl) => (
+          <li>
+            <a class='music-card' href={pl.link} target='_blank' rel='noopener'>
+              <span class='block font-medium'>{pl.title}</span>
+              {pl.platform && <span class='block text-sm text-muted-foreground'>{pl.platform} ↗</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</PageLayout>

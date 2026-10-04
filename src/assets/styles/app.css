@@ -1,0 +1,464 @@
+/* ============================================================
+   SkavinTheRat Blog — Design Tokens
+   背景色取自 Miles Davis 海报（浅暖米色，适合长文阅读）
+   强调色取自 THE EDGE 海报（高饱和橙色）
+   文本色为暖黑
+   ============================================================ */
+:root {
+  /* Primary — 海报橙 */
+  --primary: 20 90% 48%;
+  /* Foreground — 暖黑 */
+  --foreground: 30 10% 9%;
+  --muted-foreground: 35 8% 32%;
+  /* Background — 米色（Miles Davis 海报底色） */
+  --background: 47 24% 92%;
+  --muted: 45 18% 86%;
+  --card: 45 22% 88%;
+
+  /* Basic */
+  --border: 40 10% 74%;
+  --input: 40 10% 82%;
+  --ring: 20 90% 48%;
+  --radius: 0.5rem;
+
+  /* Custom tokens */
+  --paper: 47 24% 92%;
+  --paper-deep: 45 20% 87%;
+  --ink: 30 10% 9%;
+  --accent: 20 90% 48%;
+}
+.dark {
+  /* Primary — 暗色下提亮橙色保持对比度 */
+  --primary: 22 95% 62%;
+  /* Foreground — 米白 */
+  --foreground: 47 20% 92%;
+  --muted-foreground: 40 8% 65%;
+  /* Background — 暖炭黑 */
+  --background: 30 9% 8%;
+  --muted: 30 6% 14%;
+  --card: 30 6% 18%;
+
+  /* Basic */
+  --border: 30 5% 26%;
+  --input: 30 5% 20%;
+  --ring: 22 95% 62%;
+
+  --paper: 30 9% 8%;
+  --paper-deep: 30 6% 12%;
+  --ink: 47 20% 92%;
+  --accent: 22 95% 62%;
+}
+:root {
+  --un-default-border-color: hsl(var(--border) / 1);
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* Global */
+a {
+  transition: color 0.2s ease;
+  &:hover {
+    color: hsl(var(--primary) / var(--un-text-opacity, 1));
+  }
+}
+
+::selection {
+  background: hsl(var(--accent) / 0.9);
+  color: hsl(var(--paper) / 1);
+}
+
+/* ============================================================
+   Hero — 编辑海报风（THE EDGE × RISE × Miles Davis）
+   ============================================================ */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 4.5rem);
+  padding-top: 1.5rem;
+}
+
+/* 顶部 / 底部 meta 行：等宽字体 + 分隔线（THE EDGE 式） */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground) / 1);
+}
+.hero-meta .divider {
+  width: 1px;
+  height: 0.9rem;
+  background: hsl(var(--border) / 1);
+}
+
+/* 大字标题 */
+.hero-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 2.5rem;
+  font-family: 'Anton', 'Arial Black', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  font-size: clamp(3.8rem, 15.5vw, 13rem);
+  color: hsl(var(--ink) / 1);
+  pointer-events: none;
+}
+.hero-title .row {
+  display: block;
+  overflow: hidden; /* 字母从裁切框中升起 */
+}
+.hero-title .row > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-title .row:nth-child(2) > span {
+  animation-delay: 0.12s;
+}
+.hero-title .accent {
+  color: hsl(var(--accent) / 1);
+}
+@keyframes hero-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Rise 插图：混合模式让米色底融入页面（底色过渡） */
+.hero-art {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  width: min(46%, 30rem);
+  transform: translateY(-52%);
+  opacity: 0;
+  animation: hero-art-in 1.1s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-art img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply; /* 米色底与页面底色融合 */
+  filter: contrast(1.02);
+}
+.dark .hero-art img {
+  mix-blend-mode: screen; /* 暗色模式反向融合 */
+  filter: invert(0.88) hue-rotate(180deg) contrast(0.95);
+}
+@keyframes hero-art-in {
+  from {
+    opacity: 0;
+    transform: translateY(-46%) scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-52%) scale(1);
+  }
+}
+
+/* 副文案（THE EDGE 中部说明文字式） */
+.hero-sub {
+  position: relative;
+  z-index: 2;
+  margin-top: 2.25rem;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: hsl(var(--muted-foreground) / 1);
+  opacity: 0;
+  animation: fade-in-up 0.7s 0.55s ease forwards;
+}
+.hero-sub strong {
+  color: hsl(var(--ink) / 1);
+  font-weight: 500;
+}
+
+/* CTA 行（crumple 式：实心黑按钮 + 细线文字链接） */
+.hero-cta {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  opacity: 0;
+  animation: fade-in-up 0.7s 0.7s ease forwards;
+}
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.9rem;
+  background: hsl(var(--ink) / 1);
+  color: hsl(var(--paper) / 1);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+}
+.btn-solid:hover {
+  background: hsl(var(--accent) / 1);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.btn-line {
+  font-size: 0.9rem;
+  color: hsl(var(--ink) / 1);
+  background-image: linear-gradient(hsl(var(--accent) / 1), hsl(var(--accent) / 1));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 2px;
+}
+.btn-line:hover {
+  background-size: 100% 1px;
+  color: hsl(var(--accent) / 1);
+}
+
+/* 底部 meta 行 */
+.hero-bottom {
+  margin-top: auto;
+  padding: 2rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground) / 1);
+  opacity: 0;
+  animation: fade-in-up 0.7s 0.85s ease forwards;
+}
+.scroll-hint {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.scroll-hint::after {
+  content: '';
+  width: 1px;
+  height: 2.2rem;
+  background: hsl(var(--muted-foreground) / 0.6);
+  animation: scroll-pulse 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   首页板块 — 细线分割（crumple 导航式）
+   ============================================================ */
+.home-section {
+  border-top: 1px solid hsl(var(--border) / 1);
+  padding: 2.75rem 0;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+.section-head h2 {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground) / 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-head h2::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  background: hsl(var(--accent) / 1);
+}
+
+/* 一句话声明（yiannifive 式） */
+.statement {
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  line-height: 1.55;
+  font-weight: 400;
+  color: hsl(var(--ink) / 1);
+  max-width: 46rem;
+}
+.statement em {
+  font-style: normal;
+  color: hsl(var(--accent) / 1);
+}
+
+/* 社交链接 chips（crumple 细线框式） */
+.connect-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  border: 1px solid hsl(var(--border) / 1);
+  width: fit-content;
+}
+.connect-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.85rem;
+  color: hsl(var(--ink) / 1);
+  border-right: 1px solid hsl(var(--border) / 1);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+.connect-row a:last-child {
+  border-right: none;
+}
+.connect-row a:hover {
+  background: hsl(var(--ink) / 1);
+  color: hsl(var(--paper) / 1);
+}
+
+/* 随记列表 */
+.note-item {
+  padding: 1rem 0;
+  border-bottom: 1px dashed hsl(var(--border) / 1);
+}
+.note-item time {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: hsl(var(--accent) / 1);
+}
+.note-item p {
+  margin-top: 0.35rem;
+  color: hsl(var(--foreground) / 0.85);
+  line-height: 1.7;
+}
+
+/* 音乐卡片 */
+.music-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid hsl(var(--border) / 1);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease;
+}
+.music-card:hover {
+  transform: translateY(-3px);
+  border-color: hsl(var(--ink) / 1);
+}
+.music-card .eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 1.1rem;
+}
+.music-card .eq i {
+  width: 3px;
+  background: hsl(var(--accent) / 1);
+  animation: eq-bounce 1.1s ease-in-out infinite;
+}
+.music-card .eq i:nth-child(1) {
+  height: 45%;
+}
+.music-card .eq i:nth-child(2) {
+  height: 100%;
+  animation-delay: 0.15s;
+}
+.music-card .eq i:nth-child(3) {
+  height: 65%;
+  animation-delay: 0.3s;
+}
+@keyframes eq-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.5);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ============================================================
+   滚动浮现动画（IntersectionObserver 驱动）
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 尊重减少动态偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .row > span,
+  .hero-art,
+  .hero-sub,
+  .hero-cta,
+  .hero-bottom {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+  }
+  .scroll-hint::after,
+  .music-card .eq i {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .hero-art {
+    position: relative;
+    width: 82%;
+    top: auto;
+    right: auto;
+    margin: -1rem auto 0;
+    transform: none;
+    order: 3;
+  }
+  @keyframes hero-art-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .hero-bottom .hide-mobile {
+    display: none;
+  }
+}

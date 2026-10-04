@@ -1,0 +1,40 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import ProjectSection from '@/components/projects/ProjectSection.astro'
+
+const headings = [
+  { depth: 2, slug: 'programs', text: 'Programs' },
+  { depth: 2, slug: 'learnings', text: 'Learnings' }
+]
+---
+
+<PageLayout title='Projects' {headings}>
+  <p class='text-muted-foreground'>
+    这里会逐步放上我做过的项目。大一刚刚开始——第一个项目，很可能就是本站的持续迭代。
+  </p>
+
+  <h2 id='programs'>Programs</h2>
+  {/*
+    添加项目的方法：在下面的 projects 数组中追加对象，links 支持
+    github / site / doc / release 四种类型。示例：
+    {
+      name: '我的第一个项目',
+      description: '一句话说明它解决什么问题',
+      links: [{ type: 'github', href: 'https://github.com/你的用户名/仓库' }]
+    }
+  */}
+  <ProjectSection
+    projects={[
+      {
+        name: '🐀 SkavinTheRat Blog',
+        description: '你正在浏览的这个网站：Astro + Astro Theme Pure 定制，米色海报风',
+        links: [{ type: 'site', href: '/' }]
+      }
+    ]}
+  />
+
+  <h2 id='learnings'>Learnings</h2>
+  <p class='text-muted-foreground'>
+    课程笔记与练习代码的仓库会列在这里（如 Python 学习、CS 课程作业）。等它们足够体面时再来。
+  </p>
+</PageLayout>
