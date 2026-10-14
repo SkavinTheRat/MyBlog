@@ -1,8 +1,11 @@
 ---
-title: 'PythonD3：分支结构与循环'
-description: 'if/else 分支写法、循环控制与 range 的用法笔记。'
+title: PythonD3：分支结构与循环
+description: if/else 分支写法、循环控制与 range 的用法笔记。
 publishDate: 2026-10-14
-tags: ['python', '语法']
+tags:
+  - python
+  - 语法
+Language: zh-CN
 ---
 
 一.分支结构：if语句
@@ -77,9 +80,9 @@ tags: ['python', '语法']
 			最终的结果不一定以布尔值的结果（true/false）显现出来，可以强制类型转换
 			具体输出原理：===**“短路逻辑”**==
 				当左侧操作数已经决定整个逻辑表达式的结果是，就不再计算右侧的操作数
-		3.逻辑运算的顺序：not>and>or
+		3.逻辑运算的顺序：`not>and>or
 	3.补充：可以将一个变量赋值给布尔值，有“别名”的作用
-		e.g. Me = True
+		e.g. `Me = True
 			
 			
 	
