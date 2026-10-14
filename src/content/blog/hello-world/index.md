@@ -6,6 +6,7 @@ tags:
   - 博客
   - astro
 language: zh-CN
+writedate: sry,idk
 ---
 
 ## 为什么开博客

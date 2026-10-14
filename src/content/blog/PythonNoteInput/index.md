@@ -2,7 +2,11 @@
 title: PythonD3-输入函数input
 description: 关于强大输入函数与“流”的概念
 publishDate: 2026-10-14
-tags: ['input', 'python']
+tags:
+  - input
+  - python
+language: zh-CN
+writeDate: sry,idk
 ---
 1.input语法：
 	input("提示词“)
