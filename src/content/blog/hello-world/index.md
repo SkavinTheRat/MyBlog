@@ -1,9 +1,11 @@
 ---
-title: '你好，世界：博客开张'
-description: '这个网站是怎么搭起来的，以及它以后用来做什么。'
+title: 你好，世界：博客开张
+description: 这个网站是怎么搭起来的，以及它以后用来做什么。
 publishDate: 2026-10-04
-tags: ['博客', 'astro']
-language: 'zh-CN'
+tags:
+  - 博客
+  - astro
+language: zh-CN
 ---
 
 ## 为什么开博客

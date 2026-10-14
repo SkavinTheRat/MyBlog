@@ -4,7 +4,7 @@ description: 'venv 隔离依赖、uv 加速装包、Git 回溯版本——把 Py
 publishDate: 2026-10-14
 tags: ['python', '笔记']
 ---
-
+\
 > **主线一句话**：先把"环境"搭好——venv 给每个项目一个独立的依赖空间，uv 让装包又快又省心，Git 让代码每一步都能回溯。
 
 ---
